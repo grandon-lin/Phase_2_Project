@@ -1,7 +1,5 @@
 package stepdefs;
 
-import java.util.List;
-
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +13,7 @@ public class HomepageStepDef {
 
 	WebDriver driver = Hooks.driver;
 	String productName = "";
+	int cartItems = 0;
 	
 	@Given("I have successfully login")
 	public void i_have_successfully_login() {
@@ -39,4 +38,17 @@ public class HomepageStepDef {
 	    Assert.assertEquals(productTitle, productName);
 	}
 	
+	@When("I select the ADD_TO_CART button for the {string}")
+	public void i_select_the_button_for_the(String productNameVal) {
+	    String xpath = "//div[text()='" +  productNameVal + "']//following::button[1]";
+	    WebElement addToCartBtn = driver.findElement(By.xpath(xpath));
+	    addToCartBtn.click();
+	    cartItems++;
+	}
+
+	@Then("Cart item number should be increased by one")
+	public void cart_item_number_should_be_increased_by_one() {
+	    WebElement cartIcon = driver.findElement(By.xpath("//a[@class='shopping_cart_link']"));
+	    Assert.assertTrue(cartIcon.getText().equals(String.valueOf(cartItems)));
+	}
 }
