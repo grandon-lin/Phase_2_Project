@@ -13,6 +13,7 @@ Feature: Login Feature Scenario
       | UserName      | Password     |
       | standard_user | secret_sauce |
 
+  @regression
   Scenario: This scenario is to define the login happy path
     When I enter the correct username and password
     And I click on the Login Button

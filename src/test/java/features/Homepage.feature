@@ -12,10 +12,11 @@ Feature: Homepage Feature Scenario
       | ProductName              |
       | Sauce Labs Fleece Jacket |
 
-      Scenario Outline: This scenario is to define the add product path
-      When I select the ADD_TO_CART button for the "<ProductName>"
-      Then Cart item number should be increased by one
-      
-      Examples: 
+  @sanity
+  Scenario Outline: This scenario is to define the add product path
+    When I select the ADD_TO_CART button for the "<ProductName>"
+    Then Cart item number should be increased by one
+
+    Examples: 
       | ProductName              |
       | Sauce Labs Fleece Jacket |
